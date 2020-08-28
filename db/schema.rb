@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 2020_08_26_131854) do
 
   create_table "follows", force: :cascade do |t|
     t.integer "following_id"
-    t.integer "follower_id"
+    t.integer "fan_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["follower_id"], name: "index_follows_on_follower_id"
+    t.index ["fan_id"], name: "index_follows_on_fan_id"
     t.index ["following_id"], name: "index_follows_on_following_id"
   end
 
