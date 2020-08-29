@@ -1,0 +1,7 @@
+<% users.each do |user| %>
+  <div>
+    <%= image_tag user.avatar.variant(resize_to_limit: [50, 50]) if user.avatar.attached?%>
+    <%= link_to  user.email, user %>
+    <%= link_to  "BTN", "#" %>
+  </div>
+<% end %>
