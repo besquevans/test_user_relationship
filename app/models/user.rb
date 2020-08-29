@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar    #大頭照
+  has_many :posts 
+  has_many :comments
   has_many :followingships, foreign_key: :following_id, class_name: "Follow", dependent: :destroy
   has_many :fans, through: :followingships, source: :fan
 
