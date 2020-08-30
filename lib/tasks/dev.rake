@@ -4,13 +4,15 @@ namespace :dev do
     User.destroy_all
 
     10.times do
+      image_url = Faker::Avatar.image(size: "50x50", format: "jpg")
       user = User.create!(
         nick_name: Faker::Name.first_name,
         email: Faker::Internet.email,
         password: "123456",
+        remote_avatar_url: image_url             #carrierwave
       )
-      image_url = Faker::Avatar.image(size: "50x50", format: "jpg")
-      user.avatar.attach(io: open(image_url)  , filename: "avatar_#{user.id}.jpg")
+
+      # user.avatar.attach(io: open(image_url)  , filename: "avatar_#{user.id}.jpg")   #active storage
       print "."
     end
 
