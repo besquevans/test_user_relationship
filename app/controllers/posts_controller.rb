@@ -1,8 +1,14 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
-  
+
   def index
-    @posts = Post.all
+    @posts = []
+    users = current_user.followings
+
+    users.each do |user|
+      @posts.concat(user.posts)
+    end
+    @posts.concat(current_user.posts)
   end
 
   def show
@@ -43,7 +49,7 @@ class PostsController < ApplicationController
 
   private
 
-  def find_post 
+  def find_post
     @post = Post.find(params[:id])
   end
 

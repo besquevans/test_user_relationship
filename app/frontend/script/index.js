@@ -1,1 +1,2 @@
-require("axios")
+import "axios"
+require("./search.js")
