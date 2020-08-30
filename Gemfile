@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'image_processing', '~> 1.11'                 #讀取畫面時壓縮圖片工具
+gem 'carrierwave', '~> 2.1'                       #圖片管理工具
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
