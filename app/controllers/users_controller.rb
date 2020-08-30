@@ -3,10 +3,6 @@ class UsersController < ApplicationController
 
   helper_method :already_followed
 
-  def index 
-    @users = User.all
-  end
-
   def show
   end
 
