@@ -1,8 +1,8 @@
 namespace :dev do
-  task fake_user: :environment do
-    print "正在建立使用者資料"
+  task fake_users: :environment do
+    print "\n正在建立使用者資料"
     User.destroy_all
-    
+
     10.times do
       user = User.create!(
         nick_name: Faker::Name.first_name,
@@ -14,17 +14,16 @@ namespace :dev do
       print "."
     end
 
-    puts ""
-    puts "成功建立 #{User.count} 筆 使用者資料！"
+    puts "\n成功建立 #{User.count} 筆 使用者資料！"
     puts User.last.email
   end
 
-  task fake_follow: :environment do
-    print "正在建立使用者追蹤資料"
+  task fake_follows: :environment do
+    print "\n正在建立使用者追蹤資料"
     Follow.destroy_all
 
     User.all.each do |user|
-      number = rand(3..6)
+      number = rand(2..5)
       @users = User.where.not(id: user.id).sample(number)
       @users.each do |u|
         Follow.create!(
@@ -35,12 +34,29 @@ namespace :dev do
       end
     end
 
-    puts ""
-    puts "成功建立 #{Follow.count} 筆 使用者追蹤資料！"
+    puts "\n成功建立 #{Follow.count} 筆 使用者追蹤資料！"
   end
 
-  task fake_all: :environment do 
-    Rake::Task["dev:fake_user"].invoke
-    Rake::Task["dev:fake_follow"].invoke
+  task fake_posts: :environment do
+    print "\n正在建立使用者 posts 資料"
+    Post.destroy_all
+
+    User.all.each do |user|
+      rand(2..5).times do
+        user.posts.create!(
+          title: Faker::Lorem.sentence,
+          content: Faker::Lorem.sentence
+        )
+        print "."
+      end
+    end
+
+    puts "\n成功建立 #{Post.count} 筆 使用者post資料！"
+  end
+
+  task fake_all: :environment do
+    Rake::Task["dev:fake_users"].invoke
+    Rake::Task["dev:fake_follows"].invoke
+    Rake::Task["dev:fake_posts"].invoke
   end
 end
