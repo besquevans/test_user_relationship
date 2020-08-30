@@ -7,21 +7,21 @@
 
   <div>
     <%= link_to posts_path do %>
-      <p>posts count</p>
+      <p><%= @user.posts_count %></p>
       <p>貼文</p>
     <% end %>
   </div>
 
   <div>
     <%= link_to fans_user_path(@user) do %>
-      <p>fans count</p>
+      <p><%= @user.fans_count %></p>
       <p>粉絲</p>
     <% end %>
   </div>
 
   <div>
     <%= link_to followings_user_path(@user) do %>
-      <p>follings count</p>
+      <p><%= @user.followings_count %></p>
       <p>追蹤中</p>
     <% end %>
   </div>
